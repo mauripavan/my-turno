@@ -1,11 +1,13 @@
 import Navbar from "./components/Navbar";
+import Login from "./sections/Login";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col justify-between">
-      <div>
-        <Navbar />
+    <div>
+      <Navbar />
+      <div className="flex items-center justify-center min-h-screen">
+        <Login />
       </div>
-    </main>
+    </div>
   );
 }
