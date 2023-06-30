@@ -11,8 +11,8 @@ export interface ICustomButtonProps {
 
 export enum Size {
   small = "small",
-  medium = "medium",
   large = "large",
+  full = "full",
 }
 
 export enum ButtonVariants {
@@ -35,13 +35,33 @@ const getButtonVariant = (variant: string) => {
   }
 };
 
+const getSizeClasses = (size: string) => {
+  switch (size) {
+    case "small": {
+      return "px-3 py-2";
+    }
+    case "large": {
+      return "px-20 py-3";
+    }
+    case "full": {
+      return "w-full py-2.5";
+    }
+  }
+};
+
 const CustomButton = (props: ICustomButtonProps) => {
-  const { title, disabled, variant = ButtonVariants.primary } = props;
+  const {
+    title,
+    disabled,
+    variant = ButtonVariants.primary,
+    size = Size.full,
+  } = props;
 
   const getButtonClasses = getButtonVariant(variant);
+  const getButtonSizes = getSizeClasses(size);
 
   return (
-    <button className={`${getButtonClasses}`} disabled={disabled}>
+    <button className={`${getButtonClasses} ${getButtonSizes}`} disabled={disabled}>
       <div className="flex items-center justify-center">
         {variant === ButtonVariants.fourth && (
           <ArrowDownIcon

@@ -5,8 +5,8 @@ import ProfileIcon from "@component/app/assets/icons/Calendar";
 const Navbar = () => {
   return (
     <div className="flex justify-between items-center h-20 px-24 shadow-[0_0_12px_rgba(0,0,0,0.08)]">
-      <div>
-        <CustomButton title={"Reservar"} variant={ButtonVariants.primary} />
+      <div className="w-28">
+        <CustomButton title={"Reservar"} variant={ButtonVariants.secondary} />
       </div>
       <div className="flex gap-4">
         <button>
