@@ -6,29 +6,6 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      sm: "540px",
-      md: "780px",
-      lg: "1000px",
-      xl: "1200px",
-    },
-    colors: {
-      white: "#ffffff",
-      black: "#000000",
-      principal: "#A442F1",
-      secondary: "#CC6AFF",
-      gray: {
-        1: "#F5F5F5",
-        2: "#F0F0F0",
-        3: "#E1E1E1",
-        6: "#8C8C8C",
-      },
-      tertiary: {
-        1: "rgba(164, 66, 241, 0.1)",
-        2: "rgba(164, 66, 241, 0.2)",
-      },
-      error: "#E53939",
-    },
     fontFamily: {
       sans: ["Roboto"],
     },
@@ -39,6 +16,24 @@ module.exports = {
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      colors: {
+        white: "#ffffff",
+        black: "#000000",
+        principal: "#A442F1",
+        secondary: "#CC6AFF",
+        gray: {
+          1: "#F5F5F5",
+          2: "#F0F0F0",
+          3: "#E1E1E1",
+          6: "#8C8C8C",
+          7: "#6E6E6E",
+        },
+        tertiary: {
+          1: "rgba(164, 66, 241, 0.1)",
+          2: "rgba(164, 66, 241, 0.2)",
+        },
+        error: "#E53939",
       },
     },
   },
