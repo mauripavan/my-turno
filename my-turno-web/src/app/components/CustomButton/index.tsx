@@ -55,13 +55,14 @@ const CustomButton = (props: ICustomButtonProps) => {
     disabled,
     variant = ButtonVariants.primary,
     size = Size.full,
+    onClick
   } = props;
 
   const getButtonClasses = getButtonVariant(variant);
   const getButtonSizes = getSizeClasses(size);
 
   return (
-    <button className={`${getButtonClasses} ${getButtonSizes}`} disabled={disabled}>
+    <button className={`${getButtonClasses} ${getButtonSizes}`} disabled={disabled} onClick={onClick}>
       <div className="flex items-center justify-center">
         {variant === ButtonVariants.fourth && (
           <ArrowDownIcon
