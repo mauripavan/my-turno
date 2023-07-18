@@ -115,5 +115,6 @@ export default function useReservations() {
     selectedDate,
     tileClassName,
     handleDateSelect,
+    handleBranchSelect,
   };
 }

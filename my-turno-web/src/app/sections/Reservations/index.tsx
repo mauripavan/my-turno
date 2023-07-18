@@ -19,6 +19,7 @@ export default function Reservations() {
     sucursales,
     tileClassName,
     selectedDate,
+    handleBranchSelect,
   } = useReservations();
 
   return (
@@ -48,6 +49,7 @@ export default function Reservations() {
               data={sucursales}
               defaultValue={"Seleccioná una sucursal"}
               keyValue={"sucursal"}
+              onChange={handleBranchSelect}
             />
           </div>
           <div className={`${selectedDate ? "visible" : "hidden"}`}>
@@ -57,6 +59,7 @@ export default function Reservations() {
                 data={horarios}
                 defaultValue={"Seleccioná un horario"}
                 keyValue={"horario"}
+                onChange={(e) => console.log(e)}
               />
             </div>
             <div className="grid grid-cols-2 gap-x-4">
