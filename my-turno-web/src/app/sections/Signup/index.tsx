@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import CustomButton, { ButtonVariants } from "../components/CustomButton";
-import TextInput, { InputType } from "../components/TextInput";
-import ArrowIcon from "../assets/icons/Arrow";
+import CustomButton, { ButtonVariants } from "../../components/CustomButton";
+import TextInput, { InputType } from "../../components/TextInput";
+import ArrowIcon from "../../assets/icons/Arrow";
 
 export default function Signup() {
   const router = useRouter();

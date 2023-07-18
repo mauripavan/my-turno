@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import CustomButton, { ButtonVariants } from "../components/CustomButton";
-import TextInput, { InputType } from "../components/TextInput";
+import CustomButton, { ButtonVariants } from "../../components/CustomButton";
+import TextInput, { InputType } from "../../components/TextInput";
 
 const Login = () => {
   const router = useRouter();
@@ -26,7 +26,7 @@ const Login = () => {
         <CustomButton
           title={"No tenés cuenta? Registrate"}
           variant={ButtonVariants.secondary}
-          onClick={() => router.push("signup")}
+          onClick={() => router.push("pages/signup")}
         />
       </div>
     </div>

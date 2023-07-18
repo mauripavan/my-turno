@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar";
-import Signup from "../sections/Signup";
+import Navbar from "../../components/Navbar";
+import Signup from "../../sections/Signup";
 
 export default function SignupSection() {
   return (
