@@ -1,8 +1,12 @@
 import { ChangeEvent } from "react";
+import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 
 export interface ISelectInputProps {
   data: string[];
   defaultValue: string;
   keyValue: string;
-  onChange: (e: ChangeEvent<HTMLSelectElement>) => void
+  id: string;
+  errors?: FieldError;
+  registerOptions?: UseFormRegisterReturn;
+  hideErrorMessage?: boolean;
 }

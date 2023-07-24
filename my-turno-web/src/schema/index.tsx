@@ -1,22 +1,58 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const LoginFormData = z.object({
-    email: z
-      .string({ required_error: 'Email is required' })
-      .email({ message: 'Must be a valid email' })
-      .max(256, { message: 'Email is too long' })
-      .refine((value) => value.trim().length === value.length, {
-        message: 'Email should not contain leading or trailing spaces.',
-      }),
-    password: z
+  email: z
+    .string({ required_error: "El email es requerido" })
+    .email({ message: "Debe ser un email valido" })
+    .max(256, { message: "El email es muy largo" })
+    .refine((value) => value.trim().length === value.length, {
+      message: "El email no debe contener espacios iniciales o finales",
+    }),
+  password: z
+    .string({ required_error: "La contraseña es requerida" })
+    .min(8, { message: "La contraseña debe tener al menos 8 caracteres" }),
+});
+
+export const SingupFormData = z
+  .object({
+    name: z
       .string()
-      .min(8)
-      .max(64, { message: 'Password is too long' })
-      .regex(/^(?=.*[0-9])(?=.*[!@$%&*])(?=.*[A-Z])(?!.*\s)[!@$%&*A-Za-z0-9]*$/, {
-        message:
-          'Password must be at least 8 characters, include an uppercase letter, a lowercase letter, a number, and a special character (!@$%&*), and should not contain spaces or other special characters.',
-      })
+      .max(64, { message: "El nombre es muy largo" })
+      .min(1, { message: "El nombre es requerido" }),
+    dni: z
+      .string()
+      .max(14, { message: "El DNI es muy largo" })
+      .min(6, { message: "El DNI es requerido" }),
+    email: z
+      .string({ required_error: "El email es requerido" })
+      .email({ message: "Debe ser un email valido" })
+      .max(256, { message: "El email es muy largo" })
       .refine((value) => value.trim().length === value.length, {
-        message: 'Password should not contain leading or trailing spaces.',
+        message: "El email no debe contener espacios iniciales o finales",
       }),
+    password: z.string().min(8).regex(/[A-Z]/).regex(/[a-z]/).regex(/\d/),
+    confirm_password: z.string(),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "Las contraseñas no coinciden",
+    path: ["confirm_password"],
   });
+
+export const ReservationFormData = z.object({
+  email: z
+    .string({ required_error: "El email es requerido" })
+    .email({ message: "Debe ser un email valido" })
+    .max(256, { message: "El email es muy largo" })
+    .refine((value) => value.trim().length === value.length, {
+      message: "El email no debe contener espacios iniciales o finales",
+    }),
+  phone: z
+    .string()
+    .nonempty({ message: "Por favor seleccioná tu número telefónico" }),
+  name: z
+    .string()
+    .max(64, { message: "El nombre es muy largo" })
+    .min(1, { message: "El nombre es requerido" }),
+  schedule: z.string().nonempty({ message: "Por favor seleccioná un horario" }),
+  branch: z.string().nonempty({ message: "Por favor seleccioná una sucursal" }),
+});

@@ -10,6 +10,7 @@ export interface TextInputProps {
   label?: string;
   errors?: FieldError;
   registerOptions?: UseFormRegisterReturn;
+  hideErrorMessage?: boolean;
 }
 
 export enum InputType {
@@ -19,7 +20,15 @@ export enum InputType {
 }
 
 export default function TextInput(props: TextInputProps) {
-  const { label, placeholder, type, id, errors, registerOptions } = props;
+  const {
+    label,
+    placeholder,
+    type,
+    id,
+    errors,
+    registerOptions,
+    hideErrorMessage,
+  } = props;
 
   return (
     <div className="w-full">
@@ -38,7 +47,9 @@ export default function TextInput(props: TextInputProps) {
         />
         {type === InputType.password && <EyeIcon />}
       </div>
-      <p className="text-xs mt-0.5 text-red-500">{errors?.message}</p>
+      {!hideErrorMessage && (
+        <p className="text-xs mt-0.5 text-red-500">{errors?.message}</p>
+      )}
     </div>
   );
 }

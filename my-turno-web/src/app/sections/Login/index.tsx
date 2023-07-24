@@ -10,12 +10,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const Login = () => {
   const router = useRouter();
-  type EditEmailForm = z.infer<typeof LoginFormData>;
+  type LoginForm = z.infer<typeof LoginFormData>;
   const {
     register,
     formState: { errors, isDirty, isValid },
     handleSubmit,
-  } = useForm<EditEmailForm>({
+  } = useForm<LoginForm>({
     mode: "onTouched",
     resolver: zodResolver(LoginFormData),
     defaultValues: {
@@ -24,12 +24,12 @@ const Login = () => {
     },
   });
 
-  const onLogin: SubmitHandler<EditEmailForm> = (data) => {
+  const onLogin: SubmitHandler<LoginForm> = (data) => {
     router.push("pages/reservations");
   };
 
   return (
-    <div className="flex flex-col w-1/3 px-8 pt-10 pb-8 items-center rounded-lg shadow-[0_0_24px__rgba(0,0,0,0.12)]">
+    <div className="flex flex-col w-5/6 md:w-3/4 lg:w-1/2 xl:w-1/3 px-8 pt-10 pb-8 items-center rounded-lg shadow-[0_0_24px__rgba(0,0,0,0.12)]">
       <p className="font-semibold text-2xl mb-5">Iniciar Sesion</p>
       <div className="flex flex-col w-full gap-y-3">
         <TextInput

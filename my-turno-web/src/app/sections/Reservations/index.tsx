@@ -10,6 +10,10 @@ import { CALENDAR_TYPES } from "react-calendar/dist/cjs/shared/const";
 import TextInput from "../../components/TextInput";
 import useReservations from "./useReservations";
 import SelectInput from "@component/app/components/SelectInput";
+import { z } from "zod";
+import { ReservationFormData } from "@component/schema";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function Reservations() {
   const {
@@ -22,13 +26,35 @@ export default function Reservations() {
     handleBranchSelect,
   } = useReservations();
 
+  type ReservationForm = z.infer<typeof ReservationFormData>;
+
+  const {
+    register,
+    formState: { errors, isDirty, isValid },
+    handleSubmit,
+  } = useForm<ReservationForm>({
+    mode: "onTouched",
+    resolver: zodResolver(ReservationFormData),
+    defaultValues: {
+      email: "",
+      name: "",
+      phone: "",
+      branch: "",
+      schedule: "",
+    },
+  });
+
+  const onReservationConfirm: SubmitHandler<ReservationForm> = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="flex flex-col w-full pt-12 pb-10 px-8 lg:px-24">
       <p className="font-semibold text-xl mb-6">Hace una reserva</p>
       <div className="grid grid-cols-7 gap-10">
         <div className="flex flex-col col-span-7 lg:col-span-4 bg-white px-10 pt-8 pb-11 rounded-lg">
           <p className="font-semibold text-lg mb-1">Reserva</p>
-          <p className="font-normal text-sm mb-1">Selecciona tu sercural</p>
+          <p className="font-normal text-sm mb-1">Selecciona tu sucursal</p>
 
           <div className="grid grid-cols-3 mt-6">
             {steps.map((item, key) => {
@@ -45,34 +71,66 @@ export default function Reservations() {
           </div>
 
           <div className="mt-6">
+            <p className="text-sm mb-0.5">Sucursal</p>
             <SelectInput
               data={sucursales}
               defaultValue={"Seleccioná una sucursal"}
               keyValue={"sucursal"}
-              onChange={handleBranchSelect}
+              id={"branch"}
+              registerOptions={{
+                ...register("branch", {
+                  onChange(event) {
+                    handleBranchSelect(event);
+                  },
+                }),
+              }}
+              errors={errors.branch}
             />
           </div>
-          <div className={`${selectedDate ? "visible" : "hidden"}`}>
+          <div className={`${selectedDate && steps[1].completed ? "visible" : "hidden"}`}>
             <div className="mt-6">
               <p className="text-sm mb-0.5">Horario</p>
               <SelectInput
                 data={horarios}
                 defaultValue={"Seleccioná un horario"}
                 keyValue={"horario"}
-                onChange={(e) => console.log(e)}
+                id={"schedule"}
+                registerOptions={{
+                  ...register("schedule", {
+                    onChange(event) {
+                      console.log(event.target.value);
+                    },
+                  }),
+                }}
+                errors={errors.schedule}
               />
             </div>
             <div className="grid grid-cols-2 gap-x-4">
               <div className="mt-6 col-span-1">
-                <TextInput label="Nombre y Apellido" />
+                <TextInput
+                  label="Nombre y Apellido"
+                  id={"name"}
+                  registerOptions={{ ...register("name") }}
+                  errors={errors.name}
+                />
               </div>
 
               <div className="mt-6 col-span-1">
-                <TextInput label="Telefono" />
+                <TextInput
+                  label="Telefono"
+                  id={"phone"}
+                  registerOptions={{ ...register("phone") }}
+                  errors={errors.phone}
+                />
               </div>
 
               <div className="mt-6 col-span-2">
-                <TextInput label="Mail" />
+                <TextInput
+                  label="Mail"
+                  id={"email"}
+                  registerOptions={{ ...register("email") }}
+                  errors={errors.email}
+                />
               </div>
             </div>
           </div>
@@ -80,9 +138,10 @@ export default function Reservations() {
           <div className=" mt-8">
             <CustomButton
               title={"Confrimar Reserva"}
-              disabled
+              disabled={!isDirty || !isValid}
               size={Size.large}
               variant={ButtonVariants.primary}
+              onClick={handleSubmit(onReservationConfirm)}
             />
           </div>
         </div>
