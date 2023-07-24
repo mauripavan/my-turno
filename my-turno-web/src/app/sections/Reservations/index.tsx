@@ -11,6 +11,10 @@ import {
   ButtonVariants,
   Size,
 } from "@component/app/components/CustomButton/types";
+import CheckIcon2 from "@component/app/assets/icons/Check2";
+import { useRecoilValue } from "recoil";
+import { reservationModalState } from "@component/app/store/app-state";
+import { useRouter } from "next/navigation";
 
 export default function Reservations() {
   const {
@@ -27,6 +31,8 @@ export default function Reservations() {
     isValid,
     onReservationConfirm,
     register,
+    onContinue,
+    successModal,
   } = useReservations();
 
   return (
@@ -160,6 +166,24 @@ export default function Reservations() {
           />
         </div>
       </div>
+
+      {successModal && (
+        <div className="fixed inset-0 flex items-center justify-center modal-overlay">
+          <div className="bg-black opacity-50 fixed inset-0"></div>
+          <div className="flex flex-col items-center p-8 rounded-lg shadow-lg modal-container gap-y-6 bg-white relative">
+            <CheckIcon2 className="w-12 h-12" />
+            <div className="flex flex-col items-center">
+              <p className="font-semibold text-lg">Turno reservado con éxito</p>
+              <p className="text-sm">Gracias por confiar en nuestro servicio</p>
+            </div>
+            <CustomButton
+              title={"Continuar"}
+              size={Size.full}
+              onClick={onContinue}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

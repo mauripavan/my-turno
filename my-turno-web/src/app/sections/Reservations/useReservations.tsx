@@ -7,6 +7,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ReservationForm } from "./types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ReservationFormData } from "@component/schema";
+import { useRecoilState } from "recoil";
+import { reservationModalState } from "@component/app/store/app-state";
+import { useRouter } from "next/navigation";
 
 export default function useReservations() {
   const reservationSteps: ICheckboxStepProps[] = [
@@ -47,6 +50,8 @@ export default function useReservations() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [steps, setSteps] = useState(reservationSteps);
   const [branchSelected, setBranchSelected] = useState("");
+  const [successModal, setSuccessModal] = useRecoilState(reservationModalState);
+  const router = useRouter();
 
   const disableDates = (date: Date, view?: string) => {
     if (view === "month") {
@@ -129,7 +134,11 @@ export default function useReservations() {
   });
 
   const onReservationConfirm: SubmitHandler<ReservationForm> = (data) => {
-    console.log(data);
+    setSuccessModal(true);
+  };
+
+  const onContinue = () => {
+    router.push("/pages/confirmation");
   };
 
   return {
@@ -146,5 +155,7 @@ export default function useReservations() {
     errors,
     isDirty,
     isValid,
+    successModal,
+    onContinue
   };
 }
