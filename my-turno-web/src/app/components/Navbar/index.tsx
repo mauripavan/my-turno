@@ -1,6 +1,7 @@
 import CalendarIcon from "@component/app/assets/icons/Profile";
-import CustomButton, { ButtonVariants } from "../CustomButton";
+import CustomButton from "../CustomButton";
 import ProfileIcon from "@component/app/assets/icons/Calendar";
+import { ButtonVariants } from "../CustomButton/types";
 
 const Navbar = () => {
   return (
