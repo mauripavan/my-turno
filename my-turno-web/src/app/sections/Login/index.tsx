@@ -1,32 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import CustomButton, { ButtonVariants } from "../../components/CustomButton";
-import TextInput, { InputType } from "../../components/TextInput";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginFormData } from "@component/schema";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import CustomButton from "../../components/CustomButton";
+import TextInput from "../../components/TextInput";
+import { InputType } from "@component/app/components/TextInput/types";
+import { ButtonVariants } from "@component/app/components/CustomButton/types";
+import useLogin from "./useLogin";
 
 const Login = () => {
-  const router = useRouter();
-  type LoginForm = z.infer<typeof LoginFormData>;
-  const {
-    register,
-    formState: { errors, isDirty, isValid },
-    handleSubmit,
-  } = useForm<LoginForm>({
-    mode: "onTouched",
-    resolver: zodResolver(LoginFormData),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
-  const onLogin: SubmitHandler<LoginForm> = (data) => {
-    router.push("pages/reservations");
-  };
+  const { handleSubmit, onLogin, register, router, errors, isDirty, isValid } =
+    useLogin();
 
   return (
     <div className="flex flex-col w-5/6 md:w-3/4 lg:w-1/2 xl:w-1/3 px-8 pt-10 pb-8 items-center rounded-lg shadow-[0_0_24px__rgba(0,0,0,0.12)]">

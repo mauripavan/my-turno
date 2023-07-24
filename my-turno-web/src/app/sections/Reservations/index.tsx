@@ -2,18 +2,15 @@
 
 import Calendar from "react-calendar";
 import CheckboxStep from "../../components/CheboxStep";
-import CustomButton, {
-  ButtonVariants,
-  Size,
-} from "../../components/CustomButton";
+import CustomButton from "../../components/CustomButton";
 import { CALENDAR_TYPES } from "react-calendar/dist/cjs/shared/const";
 import TextInput from "../../components/TextInput";
 import useReservations from "./useReservations";
 import SelectInput from "@component/app/components/SelectInput";
-import { z } from "zod";
-import { ReservationFormData } from "@component/schema";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ButtonVariants,
+  Size,
+} from "@component/app/components/CustomButton/types";
 
 export default function Reservations() {
   const {
@@ -24,29 +21,13 @@ export default function Reservations() {
     tileClassName,
     selectedDate,
     handleBranchSelect,
-  } = useReservations();
-
-  type ReservationForm = z.infer<typeof ReservationFormData>;
-
-  const {
-    register,
-    formState: { errors, isDirty, isValid },
+    errors,
     handleSubmit,
-  } = useForm<ReservationForm>({
-    mode: "onTouched",
-    resolver: zodResolver(ReservationFormData),
-    defaultValues: {
-      email: "",
-      name: "",
-      phone: "",
-      branch: "",
-      schedule: "",
-    },
-  });
-
-  const onReservationConfirm: SubmitHandler<ReservationForm> = (data) => {
-    console.log(data);
-  };
+    isDirty,
+    isValid,
+    onReservationConfirm,
+    register,
+  } = useReservations();
 
   return (
     <div className="flex flex-col w-full pt-12 pb-10 px-8 lg:px-24">
@@ -87,7 +68,11 @@ export default function Reservations() {
               errors={errors.branch}
             />
           </div>
-          <div className={`${selectedDate && steps[1].completed ? "visible" : "hidden"}`}>
+          <div
+            className={`${
+              selectedDate && steps[1].completed ? "visible" : "hidden"
+            }`}
+          >
             <div className="mt-6">
               <p className="text-sm mb-0.5">Horario</p>
               <SelectInput

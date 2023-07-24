@@ -3,6 +3,10 @@
 import { ICheckboxStepProps } from "@component/app/components/CheboxStep/types";
 import { differenceInDays, isSunday } from "date-fns";
 import { ChangeEvent, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { ReservationForm } from "./types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ReservationFormData } from "@component/schema";
 
 export default function useReservations() {
   const reservationSteps: ICheckboxStepProps[] = [
@@ -108,6 +112,26 @@ export default function useReservations() {
     setSteps(newStepValue);
   };
 
+  const {
+    register,
+    formState: { errors, isDirty, isValid },
+    handleSubmit,
+  } = useForm<ReservationForm>({
+    mode: "onTouched",
+    resolver: zodResolver(ReservationFormData),
+    defaultValues: {
+      email: "",
+      name: "",
+      phone: "",
+      branch: "",
+      schedule: "",
+    },
+  });
+
+  const onReservationConfirm: SubmitHandler<ReservationForm> = (data) => {
+    console.log(data);
+  };
+
   return {
     steps,
     sucursales,
@@ -116,5 +140,11 @@ export default function useReservations() {
     tileClassName,
     handleDateSelect,
     handleBranchSelect,
+    onReservationConfirm,
+    register,
+    handleSubmit,
+    errors,
+    isDirty,
+    isValid,
   };
 }

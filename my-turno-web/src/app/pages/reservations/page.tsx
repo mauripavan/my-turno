@@ -1,6 +1,5 @@
 import Navbar from "../../components/Navbar";
 import Reservations from "../../sections/Reservations";
-import Signup from "../../sections/Signup";
 
 export default function ReservationsSection() {
   return (
