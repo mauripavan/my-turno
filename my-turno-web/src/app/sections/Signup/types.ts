@@ -1,5 +1,5 @@
-import { SingupFormData } from "@component/schema";
-import { z } from "zod";
+import { SingupFormData } from '@component/schema';
+import { z } from 'zod';
 
 export type SingupForm = z.infer<typeof SingupFormData>;
 

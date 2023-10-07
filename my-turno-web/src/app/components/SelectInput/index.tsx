@@ -1,4 +1,4 @@
-import { ISelectInputProps } from "./types";
+import { ISelectInputProps } from './types';
 
 export default function SelectInput(props: ISelectInputProps) {
   const {
@@ -14,7 +14,7 @@ export default function SelectInput(props: ISelectInputProps) {
     <>
       <select
         defaultValue={defaultValue}
-        className="w-full py-3 px-2 rounded-lg border border-color-gray-3"
+        className='w-full py-3 px-2 rounded-lg border border-color-gray-3'
         id={id}
         {...registerOptions}
       >
@@ -27,7 +27,7 @@ export default function SelectInput(props: ISelectInputProps) {
         })}
       </select>
       {!hideErrorMessage && (
-        <p className="text-xs mt-0.5 text-red-500">{errors?.message}</p>
+        <p className='text-xs mt-0.5 text-red-500'>{errors?.message}</p>
       )}
     </>
   );

@@ -1,6 +1,6 @@
 export interface ICheckboxStepProps {
-    name: string;
-    number: number;
-    completed?: boolean;
-    active?: boolean;
-  }
+  name: string;
+  number: number;
+  completed?: boolean;
+  active?: boolean;
+}

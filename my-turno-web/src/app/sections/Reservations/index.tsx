@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import Calendar from "react-calendar";
-import CheckboxStep from "../../components/CheboxStep";
-import CustomButton from "../../components/CustomButton";
-import { CALENDAR_TYPES } from "react-calendar/dist/cjs/shared/const";
-import TextInput from "../../components/TextInput";
-import useReservations from "./useReservations";
-import SelectInput from "@component/app/components/SelectInput";
+import Calendar from 'react-calendar';
+import CheckboxStep from '../../components/CheboxStep';
+import CustomButton from '../../components/CustomButton';
+import { CALENDAR_TYPES } from 'react-calendar/dist/cjs/shared/const';
+import TextInput from '../../components/TextInput';
+import useReservations from './useReservations';
+import SelectInput from '@component/app/components/SelectInput';
 import {
   ButtonVariants,
   Size,
-} from "@component/app/components/CustomButton/types";
-import CheckIcon2 from "@component/app/assets/icons/Check2";
+} from '@component/app/components/CustomButton/types';
+import CheckIcon2 from '@component/app/assets/icons/Check2';
 
 export default function Reservations() {
   const {
@@ -33,14 +33,14 @@ export default function Reservations() {
   } = useReservations();
 
   return (
-    <div className="flex flex-col w-full pt-12 pb-10 px-8 lg:px-24">
-      <p className="font-semibold text-xl mb-6">Hace una reserva</p>
-      <div className="grid grid-cols-7 gap-10">
-        <div className="flex flex-col col-span-7 lg:col-span-4 bg-white px-10 pt-8 pb-11 rounded-lg">
-          <p className="font-semibold text-lg mb-1">Reserva</p>
-          <p className="font-normal text-sm mb-1">Selecciona tu sucursal</p>
+    <div className='flex flex-col w-full pt-12 pb-10 px-8 lg:px-24'>
+      <p className='font-semibold text-xl mb-6'>Hace una reserva</p>
+      <div className='grid grid-cols-7 gap-10'>
+        <div className='flex flex-col col-span-7 lg:col-span-4 bg-white px-10 pt-8 pb-11 rounded-lg'>
+          <p className='font-semibold text-lg mb-1'>Reserva</p>
+          <p className='font-normal text-sm mb-1'>Selecciona tu sucursal</p>
 
-          <div className="grid grid-cols-3 mt-6">
+          <div className='grid grid-cols-3 mt-6'>
             {steps.map((item, key) => {
               return (
                 <CheckboxStep
@@ -54,15 +54,15 @@ export default function Reservations() {
             })}
           </div>
 
-          <div className="mt-6">
-            <p className="text-sm mb-0.5">Sucursal</p>
+          <div className='mt-6'>
+            <p className='text-sm mb-0.5'>Sucursal</p>
             <SelectInput
               data={sucursales}
-              defaultValue={"Seleccioná una sucursal"}
-              keyValue={"sucursal"}
-              id={"branch"}
+              defaultValue={'Seleccioná una sucursal'}
+              keyValue={'sucursal'}
+              id={'branch'}
               registerOptions={{
-                ...register("branch", {
+                ...register('branch', {
                   onChange(event) {
                     handleBranchSelect(event);
                   },
@@ -73,18 +73,18 @@ export default function Reservations() {
           </div>
           <div
             className={`${
-              selectedDate && steps[1].completed ? "visible" : "hidden"
+              selectedDate && steps[1].completed ? 'visible' : 'hidden'
             }`}
           >
-            <div className="mt-6">
-              <p className="text-sm mb-0.5">Horario</p>
+            <div className='mt-6'>
+              <p className='text-sm mb-0.5'>Horario</p>
               <SelectInput
                 data={horarios}
-                defaultValue={"Seleccioná un horario"}
-                keyValue={"horario"}
-                id={"schedule"}
+                defaultValue={'Seleccioná un horario'}
+                keyValue={'horario'}
+                id={'schedule'}
                 registerOptions={{
-                  ...register("schedule", {
+                  ...register('schedule', {
                     onChange(event) {
                       console.log(event.target.value);
                     },
@@ -93,39 +93,39 @@ export default function Reservations() {
                 errors={errors.schedule}
               />
             </div>
-            <div className="grid grid-cols-2 gap-x-4">
-              <div className="mt-6 col-span-1">
+            <div className='grid grid-cols-2 gap-x-4'>
+              <div className='mt-6 col-span-1'>
                 <TextInput
-                  label="Nombre y Apellido"
-                  id={"name"}
-                  registerOptions={{ ...register("name") }}
+                  label='Nombre y Apellido'
+                  id={'name'}
+                  registerOptions={{ ...register('name') }}
                   errors={errors.name}
                 />
               </div>
 
-              <div className="mt-6 col-span-1">
+              <div className='mt-6 col-span-1'>
                 <TextInput
-                  label="Telefono"
-                  id={"phone"}
-                  registerOptions={{ ...register("phone") }}
+                  label='Telefono'
+                  id={'phone'}
+                  registerOptions={{ ...register('phone') }}
                   errors={errors.phone}
                 />
               </div>
 
-              <div className="mt-6 col-span-2">
+              <div className='mt-6 col-span-2'>
                 <TextInput
-                  label="Mail"
-                  id={"email"}
-                  registerOptions={{ ...register("email") }}
+                  label='Mail'
+                  id={'email'}
+                  registerOptions={{ ...register('email') }}
                   errors={errors.email}
                 />
               </div>
             </div>
           </div>
 
-          <div className=" mt-8">
+          <div className=' mt-8'>
             <CustomButton
-              title={"Confrimar Reserva"}
+              title={'Confrimar Reserva'}
               disabled={!isDirty || !isValid}
               size={Size.large}
               variant={ButtonVariants.primary}
@@ -137,7 +137,7 @@ export default function Reservations() {
           className={`h-fit col-span-7 lg:col-span-3 bg-white px-10 pt-8 pb-11 rounded-lg ${
             !steps[1].active &&
             !steps[1].completed &&
-            "opacity-50 cursor-not-allowed z-20"
+            'opacity-50 cursor-not-allowed z-20'
           } `}
         >
           <Calendar
@@ -145,17 +145,17 @@ export default function Reservations() {
             calendarType={CALENDAR_TYPES.HEBREW}
             showNeighboringMonth={false}
             formatShortWeekday={(_locale, date) =>
-              ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"][date.getDay()]
+              ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'][date.getDay()]
             }
             minDate={new Date()}
-            className={"text-center font-sans font-noraml text-gray-7 text-lg"}
+            className={'text-center font-sans font-noraml text-gray-7 text-lg'}
             tileClassName={tileClassName}
             nextLabel={null}
             next2Label={null}
             prevLabel={null}
             prev2Label={null}
-            minDetail="year"
-            locale="es"
+            minDetail='year'
+            locale='es'
             onClickDay={
               ((steps[1].active || steps[1].completed) && handleDateSelect) ||
               undefined
@@ -165,16 +165,16 @@ export default function Reservations() {
       </div>
 
       {successModal && (
-        <div className="fixed inset-0 flex items-center justify-center modal-overlay">
-          <div className="bg-black opacity-50 fixed inset-0"></div>
-          <div className="flex flex-col items-center p-8 rounded-lg shadow-lg modal-container gap-y-6 bg-white relative">
-            <CheckIcon2 className="w-12 h-12" />
-            <div className="flex flex-col items-center">
-              <p className="font-semibold text-lg">Turno reservado con éxito</p>
-              <p className="text-sm">Gracias por confiar en nuestro servicio</p>
+        <div className='fixed inset-0 flex items-center justify-center modal-overlay'>
+          <div className='bg-black opacity-50 fixed inset-0'></div>
+          <div className='flex flex-col items-center p-8 rounded-lg shadow-lg modal-container gap-y-6 bg-white relative'>
+            <CheckIcon2 className='w-12 h-12' />
+            <div className='flex flex-col items-center'>
+              <p className='font-semibold text-lg'>Turno reservado con éxito</p>
+              <p className='text-sm'>Gracias por confiar en nuestro servicio</p>
             </div>
             <CustomButton
-              title={"Continuar"}
+              title={'Continuar'}
               size={Size.full}
               onClick={onContinue}
             />

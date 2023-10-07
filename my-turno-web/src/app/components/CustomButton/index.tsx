@@ -1,6 +1,6 @@
-import ArrowDownIcon from "@component/app/assets/icons/ArrowDown";
-import { ButtonVariants, ICustomButtonProps, Size } from "./types";
-import useCustomButton from "./useCustomButton";
+import ArrowDownIcon from '@component/app/assets/icons/ArrowDown';
+import { ButtonVariants, ICustomButtonProps, Size } from './types';
+import useCustomButton from './useCustomButton';
 
 const CustomButton = (props: ICustomButtonProps) => {
   const { getButtonVariant, getSizeClasses } = useCustomButton();
@@ -21,7 +21,7 @@ const CustomButton = (props: ICustomButtonProps) => {
       disabled={disabled}
       onClick={onClick}
     >
-      <div className="flex items-center justify-center">
+      <div className='flex items-center justify-center'>
         {variant === ButtonVariants.fourth && (
           <ArrowDownIcon
             className={`mr-2 fill-principal group-hover:fill-error group-active:fill-principal`}

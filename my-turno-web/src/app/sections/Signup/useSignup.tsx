@@ -1,9 +1,9 @@
-import { useRouter } from "next/navigation";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { PasswordRequirementsType, SingupForm } from "./types";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SingupFormData } from "@component/schema";
-import { useState } from "react";
+import { useRouter } from 'next/navigation';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { PasswordRequirementsType, SingupForm } from './types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SingupFormData } from '@component/schema';
+import { useState } from 'react';
 
 const useSignup = () => {
   const router = useRouter();
@@ -13,14 +13,14 @@ const useSignup = () => {
     formState: { errors, isDirty, isValid },
     handleSubmit,
   } = useForm<SingupForm>({
-    mode: "onTouched",
+    mode: 'onTouched',
     resolver: zodResolver(SingupFormData),
     defaultValues: {
-      email: "",
-      name: "",
-      dni: "",
-      password: "",
-      confirm_password: "",
+      email: '',
+      name: '',
+      dni: '',
+      password: '',
+      confirm_password: '',
     },
   });
 
@@ -46,7 +46,7 @@ const useSignup = () => {
   };
 
   const onSignup: SubmitHandler<SingupForm> = (data) => {
-    router.push("/");
+    router.push('/');
   };
 
   return {

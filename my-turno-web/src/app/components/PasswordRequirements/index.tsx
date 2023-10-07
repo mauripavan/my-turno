@@ -1,6 +1,6 @@
-import CheckIcon2 from "@component/app/assets/icons/Check2";
-import WrongIcon from "@component/app/assets/icons/Wrong";
-import { PasswordRequirementsType } from "@component/app/sections/Signup/types";
+import CheckIcon2 from '@component/app/assets/icons/Check2';
+import WrongIcon from '@component/app/assets/icons/Wrong';
+import { PasswordRequirementsType } from '@component/app/sections/Signup/types';
 
 export interface IPasswordRequirementsProps {
   requirements: PasswordRequirementsType;
@@ -9,18 +9,18 @@ export interface IPasswordRequirementsProps {
 const PasswordRequirements = (props: IPasswordRequirementsProps) => {
   const { requirements: passwordRequirements } = props;
   return (
-    <div className="bg-gray-1 py-4 px-5 mt-4 rounded-lg">
-      <div className="flex pb-1 border-b border-gray-3 text-gray-7 font-medium text-xs">
+    <div className='bg-gray-1 py-4 px-5 mt-4 rounded-lg'>
+      <div className='flex pb-1 border-b border-gray-3 text-gray-7 font-medium text-xs'>
         <p>La contraseña debe contener:</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 mt-2 text-gray-7 text-xs gap-y-2">
+      <div className='grid grid-cols-1 sm:grid-cols-2 mt-2 text-gray-7 text-xs gap-y-2'>
         <div
           className={`flex col-span-1 gap-x-1 ${
             passwordRequirements.uppercase === undefined
-              ? "text-gray-7"
+              ? 'text-gray-7'
               : passwordRequirements.uppercase === true
-              ? "text-success"
-              : "text-error"
+              ? 'text-success'
+              : 'text-error'
           }`}
         >
           {passwordRequirements.uppercase ===
@@ -34,10 +34,10 @@ const PasswordRequirements = (props: IPasswordRequirementsProps) => {
         <div
           className={`flex col-span-1 gap-x-1 ${
             passwordRequirements.lowercase === undefined
-              ? "text-gray-7"
+              ? 'text-gray-7'
               : passwordRequirements.lowercase === true
-              ? "text-success"
-              : "text-error"
+              ? 'text-success'
+              : 'text-error'
           }`}
         >
           {passwordRequirements.lowercase ===
@@ -51,10 +51,10 @@ const PasswordRequirements = (props: IPasswordRequirementsProps) => {
         <div
           className={`flex col-span-1 gap-x-1 ${
             passwordRequirements.number === undefined
-              ? "text-gray-7"
+              ? 'text-gray-7'
               : passwordRequirements.number === true
-              ? "text-success"
-              : "text-error"
+              ? 'text-success'
+              : 'text-error'
           }`}
         >
           {passwordRequirements.number ===
@@ -68,10 +68,10 @@ const PasswordRequirements = (props: IPasswordRequirementsProps) => {
         <div
           className={`flex col-span-1 gap-x-1 ${
             passwordRequirements.length === undefined
-              ? "text-gray-7"
+              ? 'text-gray-7'
               : passwordRequirements.length === true
-              ? "text-success"
-              : "text-error"
+              ? 'text-success'
+              : 'text-error'
           }`}
         >
           {passwordRequirements.length ===

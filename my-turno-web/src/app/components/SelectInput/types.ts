@@ -1,5 +1,5 @@
-import { ChangeEvent } from "react";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import { ChangeEvent } from 'react';
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form';
 
 export interface ISelectInputProps {
   data: string[];
