@@ -5,7 +5,7 @@ import { ButtonVariants } from "../CustomButton/types";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between items-center h-20 px-24 shadow-[0_0_12px_rgba(0,0,0,0.08)]">
+    <div className="flex justify-between items-center h-20 px-24 shadow-custom">
       <div className="w-28">
         <CustomButton title={"Reservar"} variant={ButtonVariants.secondary} />
       </div>

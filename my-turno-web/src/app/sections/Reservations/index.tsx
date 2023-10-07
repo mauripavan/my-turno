@@ -12,9 +12,6 @@ import {
   Size,
 } from "@component/app/components/CustomButton/types";
 import CheckIcon2 from "@component/app/assets/icons/Check2";
-import { useRecoilValue } from "recoil";
-import { reservationModalState } from "@component/app/store/app-state";
-import { useRouter } from "next/navigation";
 
 export default function Reservations() {
   const {

@@ -17,6 +17,9 @@ module.exports = {
       borderRadius: {
         "4xl": "2rem",
       },
+      boxShadow: {
+        custom: '0 0 12px 0 rgba(0, 0, 0, 0.80)',
+      },
       colors: {
         white: "#ffffff",
         black: "#000000",
@@ -30,6 +33,7 @@ module.exports = {
           5: "#AFAFAF",
           6: "#8C8C8C",
           7: "#6E6E6E",
+          8: "#505050",
           9: "#282828",
         },
         tertiary: {

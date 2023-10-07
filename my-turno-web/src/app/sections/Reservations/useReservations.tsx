@@ -49,7 +49,7 @@ export default function useReservations() {
   const today = new Date();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [steps, setSteps] = useState(reservationSteps);
-  const [branchSelected, setBranchSelected] = useState("");
+  const [_branchSelected, setBranchSelected] = useState("");
   const [successModal, setSuccessModal] = useRecoilState(reservationModalState);
   const router = useRouter();
 
@@ -138,7 +138,7 @@ export default function useReservations() {
   };
 
   const onContinue = () => {
-    router.push("/pages/confirmation");
+    router.push(`pages/confirmation`);
   };
 
   return {
@@ -156,6 +156,6 @@ export default function useReservations() {
     isDirty,
     isValid,
     successModal,
-    onContinue
+    onContinue,
   };
 }

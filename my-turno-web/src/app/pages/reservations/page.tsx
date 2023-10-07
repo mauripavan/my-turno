@@ -5,7 +5,7 @@ export default function ReservationsSection() {
   return (
     <div>
       <Navbar />
-      <div className="flex bg-gray-100 min-h-screen">
+      <div className="flex bg-white min-h-screen">
         <Reservations />
       </div>
     </div>
